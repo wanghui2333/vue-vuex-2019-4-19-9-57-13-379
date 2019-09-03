@@ -15,7 +15,13 @@ export default {
     },
   methods: {
     addTodoList: function() {
-      this.$store.commit('addNewData', this.inputtingText);
+      let data = {
+        content: this.inputtingText,
+        id: this.$store.state.index,
+        status: "active"
+      }
+      this.$store.state.index++;
+      this.$store.commit('addNewData', data);
     }
   }
 };

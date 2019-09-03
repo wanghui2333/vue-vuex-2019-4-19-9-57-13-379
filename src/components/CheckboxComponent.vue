@@ -3,7 +3,11 @@
     <ul>
       <li v-for="(item, index) in filterTodoList" :key="index">
         {{ index }}.
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          @click="changeStatus(item)"
+          :checked="item.status === 'completed'"
+        />
         {{ item.content }}
       </li>
     </ul>
@@ -15,13 +19,25 @@ export default {
   name: "CheckboxComponent",
   computed: {
     filterTodoList: function() {
-      let filterList = this.$store.state.todoList.filter(item => {
-        return (
-          this.$store.state.currentFilter === "all" ||
-          this.$store.state.currentFilter === item.status
-        );
-      });
+      let filterList = [];
+      for (let index = 0; index < this.$store.state.todoList.length; index++) {
+        const element = this.$store.state.todoList[index];
+        if (this.$store.state.currentFilter === "all" || this.$store.state.currentFilter === element.status) {
+          filterList.push({
+            content: element.content,
+            status: element.status,
+            id: element.id
+          });
+        }
+      }
       return filterList;
+    }
+  },
+  methods: {
+    changeStatus: function(item) {
+      let status = item.status === "active" ? "completed" : "active";
+      let index = parseInt(item.id);
+      this.$store.state.todoList[index].status = status;
     }
   }
 };
