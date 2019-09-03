@@ -10,7 +10,8 @@ export default {
                 content: "睡觉",
                 status: "completed"
             }
-        ]
+        ],
+        currentFilter: "active"
     },
     mutations: {
         addNewData(state, inputtingText) {

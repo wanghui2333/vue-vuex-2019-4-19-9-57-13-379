@@ -9,10 +9,7 @@
         </li>
       </ul>
     </div>
-    <button @click="statusChange('all')">ALL</button>
-    <button @click="statusChange('active')">Active</button>
-    <button @click="statusChange('completed')">Completed</button>
-    <div>当前的状态为:{{ currentFilter }}</div>
+    <BottomComponent></BottomComponent>
   </div>
 </template>
 
@@ -20,29 +17,21 @@
 import CreateFormComponent from "./components/CreateFormComponent";
 import CheckboxComponent from "./components/CheckboxComponent";
 import TitleComponent from "./components/TitleComponent";
+import BottomComponent from "./components/BottomComponent";
 
 export default {
   name: "app",
   components: {
     CreateFormComponent,
     CheckboxComponent,
-    TitleComponent
-  },
-  data: function() {
-    return {
-      currentFilter: "active"
-    };
-  },
-  methods: {
-    statusChange: function(status) {
-      this.currentFilter = status;
-    }
+    TitleComponent,
+    BottomComponent
   },
   computed: {
     filterTodoList: function() {
       let filterList = this.$store.state.todoList.filter(item => {
         return (
-          this.currentFilter === "all" || this.currentFilter === item.status
+          this.$store.state.currentFilter === "all" || this.$store.state.currentFilter === item.status
         );
       });
       return filterList;
