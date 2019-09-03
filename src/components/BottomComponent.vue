@@ -3,7 +3,6 @@
     <button @click="statusChange('all')">ALL</button>
     <button @click="statusChange('active')">Active</button>
     <button @click="statusChange('completed')">Completed</button>
-    <div>当前的状态为:{{ $store.state.currentFilter }}</div>
   </div>
 </template>
 
@@ -25,4 +24,14 @@ export default {
 </script>
 
 <style scoped>
+button {
+  display: inline-block;
+  background-color: #fc999b;
+  color: #ffffff;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 2px;
+  margin-right: 10px;
+  padding: 5px 15px;
+}
 </style>
