@@ -22,7 +22,10 @@ export default {
       let filterList = [];
       for (let index = 0; index < this.$store.state.todoList.length; index++) {
         const element = this.$store.state.todoList[index];
-        if (this.$store.state.currentFilter === "all" || this.$store.state.currentFilter === element.status) {
+        if (
+          this.$store.state.currentFilter === "all" ||
+          this.$store.state.currentFilter === element.status
+        ) {
           filterList.push({
             content: element.content,
             status: element.status,
@@ -44,4 +47,11 @@ export default {
 </script>
 
 <style scoped>
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  margin: 10px;
+}
 </style>
