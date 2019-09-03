@@ -1,18 +1,29 @@
 <template>
   <div>
-    {{ index }}.
-    <input type="checkbox" />
-    {{ item.content }}
+    <ul>
+      <li v-for="(item, index) in filterTodoList" :key="index">
+        {{ index }}.
+        <input type="checkbox" />
+        {{ item.content }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
   name: "CheckboxComponent",
-  props: [
-      "index",
-      "item"
-  ]
+  computed: {
+    filterTodoList: function() {
+      let filterList = this.$store.state.todoList.filter(item => {
+        return (
+          this.$store.state.currentFilter === "all" ||
+          this.$store.state.currentFilter === item.status
+        );
+      });
+      return filterList;
+    }
+  }
 };
 </script>
 

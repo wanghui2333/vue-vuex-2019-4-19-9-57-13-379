@@ -1,9 +1,9 @@
 <template>
   <div>
-    <button @click="statusChange('all')">ALL</button>
-    <button @click="statusChange('active')">Active</button>
-    <button @click="statusChange('completed')">Completed</button>
-    <div>当前的状态为:{{ currentFilter }}</div>
+    <h2>{{title}}</h2>
+    <p>
+      <em>{{msg}}</em>
+    </p>
   </div>
 </template>
 
